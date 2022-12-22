@@ -1,0 +1,21 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": false,
+    "nodeVersion": "16.13.2",
+    "sdksVersions": {
+      "@microsoft/microsoft-graph-client": "3.0.2",
+      "@microsoft/teams-js": "2.4.1"
+    },
+    "version": "1.16.1",
+    "libraryName": "two-webpart-one-solution",
+    "libraryId": "a3e4107f-9e3a-4a0a-a1b0-5bff9b2c7be4",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "twoWebpartOneSolution",
+    "solutionShortDescription": "twoWebpartOneSolution description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}

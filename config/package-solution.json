@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "two-webpart-one-solution-client-side-solution",
+    "id": "a3e4107f-9e3a-4a0a-a1b0-5bff9b2c7be4",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.16.1"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "twoWebpartOneSolution description"
+      },
+      "longDescription": {
+        "default": "twoWebpartOneSolution description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "two-webpart-one-solution Feature",
+        "description": "The feature that activates elements of the two-webpart-one-solution solution.",
+        "id": "8466b31f-2cd9-44cd-b027-12cc48a68fe1",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/two-webpart-one-solution.sppkg"
+  }
+}
