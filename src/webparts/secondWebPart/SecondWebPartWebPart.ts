@@ -3,6 +3,8 @@ import * as ReactDom from 'react-dom';
 import { Version } from '@microsoft/sp-core-library';
 import {
   IPropertyPaneConfiguration,
+  PropertyPaneDynamicField,
+  PropertyPaneDynamicFieldSet,
   PropertyPaneTextField
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
@@ -12,8 +14,13 @@ import * as strings from 'SecondWebPartWebPartStrings';
 import SecondWebPart from './components/SecondWebPart';
 import { ISecondWebPartProps } from './components/ISecondWebPartProps';
 
+import { DynamicProperty } from '@microsoft/sp-component-base';
+import { IWebPartPropertiesMetadata } from '@microsoft/sp-webpart-base';
+import { IList } from '../firstWebPart/FirstWebPartWebPart';
+
 export interface ISecondWebPartWebPartProps {
   description: string;
+  selectedlist: DynamicProperty<IList>;
 }
 
 export default class SecondWebPartWebPart extends BaseClientSideWebPart<ISecondWebPartWebPartProps> {
@@ -29,20 +36,29 @@ export default class SecondWebPartWebPart extends BaseClientSideWebPart<ISecondW
         isDarkTheme: this._isDarkTheme,
         environmentMessage: this._environmentMessage,
         hasTeamsContext: !!this.context.sdks.microsoftTeams,
-        userDisplayName: this.context.pageContext.user.displayName
+        userDisplayName: this.context.pageContext.user.displayName,
+        selectedlist: this.properties.selectedlist
       }
     );
 
     ReactDom.render(element, this.domElement);
   }
 
+  protected get propertiesMetadata(): IWebPartPropertiesMetadata {
+    return {
+      'selectedlist': {
+        dynamicPropertyType: 'string'
+      }
+    };
+  }
+
   protected onInit(): Promise<void> {
+    const aux = this.properties.selectedlist.tryGetValue();
+    console.log("this.properties.selectedlist: ", aux);
     return this._getEnvironmentMessage().then(message => {
       this._environmentMessage = message;
     });
   }
-
-
 
   private _getEnvironmentMessage(): Promise<string> {
     if (!!this.context.sdks.microsoftTeams) { // running in Teams, office.com or Outlook
@@ -100,15 +116,20 @@ export default class SecondWebPartWebPart extends BaseClientSideWebPart<ISecondW
     return {
       pages: [
         {
-          header: {
-            description: strings.PropertyPaneDescription
-          },
           groups: [
             {
-              groupName: strings.BasicGroupName,
+              groupName: "PrimaryGroup",
               groupFields: [
                 PropertyPaneTextField('description', {
                   label: strings.DescriptionFieldLabel
+                }),
+                PropertyPaneDynamicFieldSet({
+                  label: "Select source webpart",
+                  fields: [
+                    PropertyPaneDynamicField("selectedlist", {
+                      label: "Event source"
+                    })
+                  ]
                 })
               ]
             }

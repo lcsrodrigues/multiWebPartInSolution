@@ -22,6 +22,7 @@
   "externals": {},
   "localizedResources": {
     "FirstWebPartWebPartStrings": "lib/webparts/firstWebPart/loc/{locale}.js",
-    "SecondWebPartWebPartStrings": "lib/webparts/secondWebPart/loc/{locale}.js"
+    "SecondWebPartWebPartStrings": "lib/webparts/secondWebPart/loc/{locale}.js",
+    "ControlStrings": "node_modules/@pnp/spfx-controls-react/lib/loc/{locale}.js"
   }
 }
